@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_start"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/DEFAULT_MARGIN_HORIZONTAL"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_end"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/DEFAULT_MARGIN_HORIZONTAL"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_nota_titulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Titulo"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_nota_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Data"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toStartOf="@id/textinput_nota_hora"
+        app:layout_constraintTop_toBottomOf="@id/textinput_nota_titulo"
+        android:layout_marginTop="@dimen/DEFAULT_SPACING"
+        android:layout_marginEnd="@dimen/DEFAULT_SPACING"
+        app:startIconDrawable="@drawable/ic_calendar"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_nota_hora"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Hora"
+
+        app:layout_constraintStart_toEndOf="@id/textinput_nota_data"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintTop_toBottomOf="@id/textinput_nota_titulo"
+        android:layout_marginTop="@dimen/DEFAULT_SPACING"
+        app:startIconDrawable="@drawable/ic_timer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_nota_cancelar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintBottom_toTopOf="@id/bt_nota_salvar"
+        android:layout_marginBottom="@dimen/MIN_SPACING"
+        android:text="Cancelar"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_nota_salvar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/DEFAULT_MARGIN_HORIZONTAL"
+        android:text="Salvar Nota"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

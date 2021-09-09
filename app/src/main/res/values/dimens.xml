@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="DEFAULT_MARGIN_HORIZONTAL">30dp</dimen>
+    <dimen name="DEFAULT_MARGIN_HORIZONTAL">32dp</dimen>
+    <dimen name="DEFAULT_SPACING">16dp</dimen>
+    <dimen name="MIN_SPACING">8dp</dimen>
 </resources>
