@@ -13,7 +13,6 @@ import br.com.rafaeldornelles.model.db.NotasDatabase
 
 class NotasFormFragment: Fragment() {
     lateinit var binding: NotasFormFragmentBinding
-    lateinit var viewModel: NotasViewModel
 
     private val notasDao by lazy {
         NotasDatabase.getDatabase(NotasApplication.instance).notaDao()
@@ -27,7 +26,5 @@ class NotasFormFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val notasViewModelFactory = NotasViewModel.NotasViewModelFactory(notasDao)
-        viewModel = ViewModelProvider(this, notasViewModelFactory).get(NotasViewModel::class.java)
     }
 }
