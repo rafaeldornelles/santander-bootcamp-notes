@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/notasFragment"
-        android:name="br.com.rafaeldornelles.ui.ListNotas.NotasFragment"
-        android:label="notas_fragment"
-        tools:layout="@layout/notas_fragment" />
+        android:name="br.com.rafaeldornelles.ui.listNotas.NotasFragment"
+        android:label="Minhas Notas"
+        tools:layout="@layout/notas_fragment">
+        <action
+            android:id="@+id/action_notasFragment_to_notasFormFragment"
+            app:destination="@id/notasFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notasFormFragment"
+        android:name="br.com.rafaeldornelles.ui.listNotas.NotasFormFragment"
+        android:label="Adicionar Nota"
+        tools:layout="@layout/notas_form_fragment" />
 </navigation>

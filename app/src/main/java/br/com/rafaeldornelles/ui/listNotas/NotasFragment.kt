@@ -1,4 +1,4 @@
-package br.com.rafaeldornelles.ui.ListNotas
+package br.com.rafaeldornelles.ui.listNotas
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,13 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import br.com.rafaeldornelles.NotasApplication
 import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.NotasFragmentBinding
+import br.com.rafaeldornelles.model.db.NotasDatabase
 
 class NotasFragment : Fragment() {
     private lateinit var viewModel: NotasViewModel
     private lateinit var binding: NotasFragmentBinding
+
+    private val notasDao by lazy {
+        NotasDatabase.getDatabase(NotasApplication.instance).notaDao()
+    }
 
 
     override fun onCreateView(
@@ -25,12 +31,13 @@ class NotasFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        val notasViewModelFactory = NotasViewModel.NotasViewModelFactory(notasDao)
+        viewModel = ViewModelProvider(this, notasViewModelFactory).get(NotasViewModel::class.java)
+
+        binding.notasButtonAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_notasFragment_to_notasFormFragment)
+        }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NotasViewModel::class.java)
-    }
 
 }
