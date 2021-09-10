@@ -22,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Titulo"
+        app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,11 +39,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Data"
+        app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintEnd_toStartOf="@id/textinput_nota_hora"
         app:layout_constraintTop_toBottomOf="@id/textinput_nota_titulo"
-        android:layout_marginTop="@dimen/DEFAULT_SPACING"
         android:layout_marginEnd="@dimen/DEFAULT_SPACING"
+        android:layout_marginTop="@dimen/MIN_SPACING"
         app:startIconDrawable="@drawable/ic_calendar"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -57,11 +59,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Hora"
-
+        app:errorEnabled="true"
+        android:layout_marginTop="@dimen/MIN_SPACING"
         app:layout_constraintStart_toEndOf="@id/textinput_nota_data"
         app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintTop_toBottomOf="@id/textinput_nota_titulo"
-        android:layout_marginTop="@dimen/DEFAULT_SPACING"
         app:startIconDrawable="@drawable/ic_timer"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
