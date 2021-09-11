@@ -7,7 +7,7 @@ import java.time.LocalTime
 
 @Entity
 class Nota(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val titulo: String,
     val data: LocalDate,
     val horario: LocalTime

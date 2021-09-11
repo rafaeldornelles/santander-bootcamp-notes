@@ -1,6 +1,5 @@
 package br.com.rafaeldornelles.model.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import br.com.rafaeldornelles.model.Nota
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +13,7 @@ interface NotaDao {
     fun findById(id:Int) : Flow<Nota>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(nota: Nota)
+    fun insert(nota: Nota): Long
 
     @Delete
     fun delete(nota: Nota)
