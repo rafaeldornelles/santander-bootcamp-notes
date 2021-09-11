@@ -25,6 +25,11 @@ class NotasViewModel(private val repository: NotaRepository) : ViewModel() {
             listener.onInsertError()
         }
     }
+
+    fun delete(nota: Nota){ viewModelScope.launch {
+        withContext(Dispatchers.IO){ repository.delete(nota) }
+        }
+    }
 }
 
 class NotasViewModelFactory(private val repository: NotaRepository): ViewModelProvider.Factory {

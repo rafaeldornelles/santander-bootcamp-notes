@@ -1,5 +1,6 @@
 package br.com.rafaeldornelles.ui.listNotas
 
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.rafaeldornelles.NotasApplication
 import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.FragmentNotasBinding
@@ -14,14 +16,14 @@ import br.com.rafaeldornelles.model.Nota
 import br.com.rafaeldornelles.ui.listNotas.viewmodel.NotasViewModel
 import br.com.rafaeldornelles.ui.listNotas.viewmodel.NotasViewModelFactory
 
-class NotasFragment : Fragment() {
+class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
     private val notasViewModel: NotasViewModel by viewModels {
         NotasViewModelFactory(NotasApplication.instance.repository)
     }
 
     private lateinit var binding: FragmentNotasBinding
 
-    private val notaAdapter by lazy { NotasAdapter(notas) }
+    private val notaAdapter by lazy { NotasAdapter(notas, this) }
     private val notas = mutableListOf<Nota>()
 
     override fun onCreateView(
@@ -46,6 +48,10 @@ class NotasFragment : Fragment() {
             notas.addAll(it)
             notaAdapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onDelete(nota: Nota) {
+        notasViewModel.delete(nota)
     }
 
 
