@@ -28,4 +28,14 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         android:contentDescription="@string/description_add_note_button" />
+
+    <include
+        android:id="@+id/empty_list_notas_message"
+        layout="@layout/layout_empty_notas_list"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/notas_recycler_view"
+        app:layout_constraintStart_toStartOf="@id/notas_recycler_view"
+        app:layout_constraintEnd_toEndOf="@id/notas_recycler_view"
+        app:layout_constraintBottom_toBottomOf="@id/notas_recycler_view"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

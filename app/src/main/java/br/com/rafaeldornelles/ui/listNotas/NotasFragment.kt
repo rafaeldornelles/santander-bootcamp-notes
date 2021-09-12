@@ -34,17 +34,30 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.notasButtonAdd.setOnClickListener {
-            val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
-            findNavController().navigate(action)
-        }
-        
-        binding.notasRecyclerView.adapter = notaAdapter
+        configurarBotaoAdicionar()
+        configurarRecyclerView()
+        configurarNotasObserver()
+    }
 
-        notasViewModel.notas.observeForever{
+    private fun configurarNotasObserver() {
+        notasViewModel.notas.observe(viewLifecycleOwner) {
             notas.clear()
             notas.addAll(it)
             notaAdapter.notifyDataSetChanged()
+            binding.emptyListNotasMessage.root.visibility =
+                if (it.isEmpty()) View.VISIBLE
+                else View.GONE
+        }
+    }
+
+    private fun configurarRecyclerView() {
+        binding.notasRecyclerView.adapter = notaAdapter
+    }
+
+    private fun configurarBotaoAdicionar() {
+        binding.notasButtonAdd.setOnClickListener {
+            val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+            findNavController().navigate(action)
         }
     }
 

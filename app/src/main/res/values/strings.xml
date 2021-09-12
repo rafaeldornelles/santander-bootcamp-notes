@@ -18,4 +18,5 @@
     <string name="error_dialog_title">Erro ao salvar nota!</string>
     <string name="datepicker_title">Selecione uma data</string>
     <string name="timepicker_title">Selecione um horário</string>
+    <string name="empty_list_notas_message">Nenhuma nota adicionada. Adicione notas para elas aparecerem aqui.</string>
 </resources>
