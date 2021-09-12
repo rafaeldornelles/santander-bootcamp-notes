@@ -1,6 +1,5 @@
 package br.com.rafaeldornelles.ui.listNotas
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.rafaeldornelles.NotasApplication
-import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.FragmentNotasBinding
 import br.com.rafaeldornelles.model.Nota
 import br.com.rafaeldornelles.ui.listNotas.viewmodel.NotasViewModel
@@ -29,7 +26,7 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNotasBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +35,7 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.notasButtonAdd.setOnClickListener {
-            var action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+            val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
             findNavController().navigate(action)
         }
         
@@ -56,7 +53,7 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
     }
 
     override fun onItemClick(nota: Nota){
-        var action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+        val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
         action.nota = nota
         findNavController().navigate(action)
     }

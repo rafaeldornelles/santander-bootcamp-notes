@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.room.util.DBUtil
 import br.com.rafaeldornelles.model.Nota
 
 @Database(entities = [Nota::class], version = 1)
@@ -13,7 +12,7 @@ import br.com.rafaeldornelles.model.Nota
 abstract class NotasDatabase : RoomDatabase() {
     abstract fun notaDao(): NotaDao
     companion object{
-        const val DATABASE_NAME = "NotasDatabase"
+        private const val DATABASE_NAME = "NotasDatabase"
         private lateinit var db: NotasDatabase
 
         fun getDatabase(application: Application): NotasDatabase{

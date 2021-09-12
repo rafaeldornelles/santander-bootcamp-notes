@@ -9,11 +9,11 @@ class DatabaseConverters {
     fun fromLocalDate(value: LocalDate) = value.toEpochDay()
 
     @TypeConverter
-    fun toLocalDate(value: Long) = LocalDate.ofEpochDay(value)
+    fun toLocalDate(value: Long): LocalDate = LocalDate.ofEpochDay(value)
 
     @TypeConverter
     fun fromLocalTime(value: LocalTime) = value.toSecondOfDay().toLong()
 
     @TypeConverter
-    fun toLocalTime(value: Long) = LocalTime.ofSecondOfDay(value)
+    fun toLocalTime(value: Long): LocalTime = LocalTime.ofSecondOfDay(value)
 }

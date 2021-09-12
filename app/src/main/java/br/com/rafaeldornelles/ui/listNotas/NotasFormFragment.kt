@@ -22,18 +22,18 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 class NotasFormFragment: Fragment() {
-    lateinit var binding: FragmentNotasFormBinding
-    private val DATEPICKER_TAG = "datepicker"
-    private val TIMEPICKER_TAG = "timepicker"
+    private lateinit var binding: FragmentNotasFormBinding
+    private val datePickerTag = "datepicker"
+    private val timePickerTag = "timepicker"
 
     private val notasViewModel: NotasViewModel by viewModels { NotasViewModelFactory(NotasApplication.instance.repository) }
 
     private val datePicker by lazy { MaterialDatePicker.Builder.datePicker().build() }
     private val timePicker by lazy { MaterialTimePicker.Builder().build() }
 
-    lateinit var notaTitulo: String
-    lateinit var dateSelected: LocalDate
-    lateinit var timeSelected: LocalTime
+    private lateinit var notaTitulo: String
+    private lateinit var dateSelected: LocalDate
+    private lateinit var timeSelected: LocalTime
 
     private val args: NotasFormFragmentArgs by navArgs()
     private val nota by lazy { args.nota }
@@ -82,7 +82,7 @@ class NotasFormFragment: Fragment() {
             setOnClickListener {
                 showDatePicker()
             }
-            setOnFocusChangeListener { v, hasFocus ->
+            setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) showDatePicker()
             }
         }
@@ -99,7 +99,7 @@ class NotasFormFragment: Fragment() {
             setOnClickListener {
                 showTimePicker()
             }
-            setOnFocusChangeListener { v, hasFocus ->
+            setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) showTimePicker()
             }
         }
@@ -110,15 +110,15 @@ class NotasFormFragment: Fragment() {
         }
     }
 
-    fun showDatePicker(){
-        if (!datePicker.isAdded) datePicker.show(parentFragmentManager, DATEPICKER_TAG)
+    private fun showDatePicker(){
+        if (!datePicker.isAdded) datePicker.show(parentFragmentManager, datePickerTag)
     }
 
-    fun showTimePicker(){
-        if (!timePicker.isAdded) timePicker.show(parentFragmentManager, TIMEPICKER_TAG)
+    private fun showTimePicker(){
+        if (!timePicker.isAdded) timePicker.show(parentFragmentManager, timePickerTag)
     }
 
-    fun salvarNota(){
+    private fun salvarNota(){
         notaTitulo = binding.textinputNotaTitulo.editText?.text?.toString()?:""
         if (!validaNota()) return
         val notaId = nota?.id ?: 0
@@ -134,7 +134,7 @@ class NotasFormFragment: Fragment() {
         }
     }
 
-    fun validaNota(): Boolean {
+    private fun validaNota(): Boolean {
         binding.textinputNotaTitulo.error = if (::notaTitulo.isInitialized && notaTitulo.isNotBlank())
             null else "Insira um título para a nota"
         binding.textinputNotaData.error = if (::dateSelected.isInitialized)

@@ -11,7 +11,7 @@ import br.com.rafaeldornelles.model.Nota
 
 class NotasAdapter(private val notas: List<Nota>, private val listener: NotasAdapterListener): RecyclerView.Adapter<NotasAdapter.NotasViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotasViewHolder {
-        var binding = ItemNotaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNotaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NotasViewHolder(binding)
     }
 
@@ -26,9 +26,9 @@ class NotasAdapter(private val notas: List<Nota>, private val listener: NotasAda
     override fun getItemCount() = notas.size
 
     class NotasViewHolder(binding: ItemNotaBinding): RecyclerView.ViewHolder(binding.root) {
-        val tvTitulo = binding.notaItemTitulo
-        val tvData = binding.notaItemData
-        val ivMore = binding.notaItemMore
+        private val tvTitulo = binding.notaItemTitulo
+        private val tvData = binding.notaItemData
+        private val ivMore = binding.notaItemMore
 
         fun bind(nota: Nota, listener: NotasAdapterListener){
             val notaDataText = "${nota.data.format(NotasApplication.dateFormatter)} ${nota.horario.format(NotasApplication.timeFormatter)}"
