@@ -15,6 +15,12 @@ Implementações futuras incluem a separação de notas por dia, a inclusão de 
 - Material Library
 
 ## Telas
+<p float="left">
+    <img src="documentation/screenshot_1.png" alt="screenshot" style="width:22%"/>
+    <img src="documentation/screenshot_2.png" alt="screenshot" style="width:22%"/>
+    <img src="documentation/screenshot_3.png" alt="screenshot" style="width:22%"/>
+    <img src="documentation/screenshot_4.png" alt="screenshot" style="width:22%"/>
+</p>
 
 ## Executar
 ```
@@ -24,3 +30,4 @@ URL repositório: https://github.com/rafaeldornelles/santander-bootcamp-notes.gi
 # abrir no android studio
 Get from version control > colar url > clone
 ```
+img[alt=drawing] { width: 200px; }
