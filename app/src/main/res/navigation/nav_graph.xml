@@ -18,5 +18,11 @@
         android:id="@+id/notasFormFragment"
         android:name="br.com.rafaeldornelles.ui.listNotas.NotasFormFragment"
         android:label="Adicionar Nota"
-        tools:layout="@layout/fragment_notas_form" />
+        tools:layout="@layout/fragment_notas_form" >
+        <argument
+            android:name="nota"
+            app:argType="br.com.rafaeldornelles.model.Nota"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

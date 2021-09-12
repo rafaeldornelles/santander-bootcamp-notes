@@ -13,10 +13,10 @@ import java.lang.Exception
 class NotasViewModel(private val repository: NotaRepository) : ViewModel() {
     val notas: LiveData<List<Nota>> get() = repository.allNotas.asLiveData()
 
-    fun insert(nota: Nota, listener: NotasListener) = viewModelScope.launch {
+    fun save(nota: Nota, listener: NotasListener) = viewModelScope.launch {
         try {
             val notaId = withContext(Dispatchers.IO){
-                repository.insert(nota)
+                repository.save(nota)
             }
             if (notaId < 0) throw Exception()
             listener.onInsertSuccess()

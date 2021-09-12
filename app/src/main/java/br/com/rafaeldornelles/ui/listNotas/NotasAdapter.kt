@@ -9,7 +9,7 @@ import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.ItemNotaBinding
 import br.com.rafaeldornelles.model.Nota
 
-class NotasAdapter(val notas: List<Nota>, val listener: NotasAdapterListener): RecyclerView.Adapter<NotasAdapter.NotasViewHolder>() {
+class NotasAdapter(private val notas: List<Nota>, private val listener: NotasAdapterListener): RecyclerView.Adapter<NotasAdapter.NotasViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotasViewHolder {
         var binding = ItemNotaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NotasViewHolder(binding)
@@ -18,6 +18,9 @@ class NotasAdapter(val notas: List<Nota>, val listener: NotasAdapterListener): R
     override fun onBindViewHolder(holder: NotasViewHolder, position: Int) {
         val nota = notas[position]
         holder.bind(nota, listener)
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(nota)
+        }
     }
 
     override fun getItemCount() = notas.size
@@ -50,5 +53,6 @@ class NotasAdapter(val notas: List<Nota>, val listener: NotasAdapterListener): R
 
     interface NotasAdapterListener{
         fun onDelete(nota: Nota)
+        fun onItemClick(nota: Nota)
     }
 }

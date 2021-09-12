@@ -38,7 +38,8 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.notasButtonAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_notasFragment_to_notasFormFragment)
+            var action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+            findNavController().navigate(action)
         }
         
         binding.notasRecyclerView.adapter = notaAdapter
@@ -52,6 +53,12 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
 
     override fun onDelete(nota: Nota) {
         notasViewModel.delete(nota)
+    }
+
+    override fun onItemClick(nota: Nota){
+        var action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+        action.nota = nota
+        findNavController().navigate(action)
     }
 
 

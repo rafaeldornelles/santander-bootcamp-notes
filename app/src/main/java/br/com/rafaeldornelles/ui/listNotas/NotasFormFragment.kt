@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import br.com.rafaeldornelles.NotasApplication
 import br.com.rafaeldornelles.databinding.FragmentNotasFormBinding
 import br.com.rafaeldornelles.model.Nota
@@ -34,6 +35,9 @@ class NotasFormFragment: Fragment(), NotasListener {
     lateinit var dateSelected: LocalDate
     lateinit var timeSelected: LocalTime
 
+    private val args: NotasFormFragmentArgs by navArgs()
+    private val nota by lazy { args.nota }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         binding = FragmentNotasFormBinding.inflate(inflater, container, false)
@@ -43,10 +47,21 @@ class NotasFormFragment: Fragment(), NotasListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        inicializarCampos()
         configurarDatePicker()
         configurarTimePicker()
         configurarBotaoCancelar()
         configurarBotaoSalvar()
+    }
+
+    private fun inicializarCampos(){
+        nota?.apply {
+            binding.textinputNotaTitulo.setText(this.titulo)
+            dateSelected = this.data
+            binding.textinputNotaData.setText(dateSelected.format(NotasApplication.dateFormatter))
+            timeSelected = this.horario
+            binding.textinputNotaHora.setText(timeSelected.format(NotasApplication.timeFormatter))
+        }
     }
 
     private fun configurarBotaoSalvar() {
@@ -106,8 +121,9 @@ class NotasFormFragment: Fragment(), NotasListener {
     fun salvarNota(){
         notaTitulo = binding.textinputNotaTitulo.editText?.text?.toString()?:""
         if (!validaNota()) return
-        val nota = Nota(0, notaTitulo, dateSelected, timeSelected)
-        notasViewModel.insert(nota, this)
+        val notaId = nota?.id ?: 0
+        val notaEdit = Nota(notaId, notaTitulo, dateSelected, timeSelected)
+        notasViewModel.save(notaEdit, this)
     }
 
     fun validaNota(): Boolean {

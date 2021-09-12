@@ -13,7 +13,7 @@ interface NotaDao {
     fun findById(id:Int) : Flow<Nota>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(nota: Nota): Long
+    fun save(nota: Nota): Long
 
     @Delete
     fun delete(nota: Nota)
