@@ -40,7 +40,7 @@
         app:layout_constraintDimensionRatio=".75"
         android:clickable="true"
         android:focusable="true"
-        android:contentDescription="Botão Opções Nota" />
+        android:contentDescription="@string/description_button_options_note" />
 
 
 

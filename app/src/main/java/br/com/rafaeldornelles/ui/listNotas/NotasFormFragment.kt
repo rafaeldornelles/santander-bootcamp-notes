@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.rafaeldornelles.NotasApplication
+import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.FragmentNotasFormBinding
 import br.com.rafaeldornelles.model.Nota
 import br.com.rafaeldornelles.ui.listNotas.viewmodel.NotasViewModel
@@ -28,8 +29,9 @@ class NotasFormFragment: Fragment() {
 
     private val notasViewModel: NotasViewModel by viewModels { NotasViewModelFactory(NotasApplication.instance.repository) }
 
-    private val datePicker by lazy { MaterialDatePicker.Builder.datePicker().build() }
-    private val timePicker by lazy { MaterialTimePicker.Builder().build() }
+    private val datePicker by lazy { MaterialDatePicker.Builder.datePicker().setTitleText(getString(
+            R.string.datepicker_title)).build() }
+    private val timePicker by lazy { MaterialTimePicker.Builder().setTitleText(getString(R.string.timepicker_title)).build() }
 
     private lateinit var notaTitulo: String
     private lateinit var dateSelected: LocalDate
@@ -126,9 +128,9 @@ class NotasFormFragment: Fragment() {
         notasViewModel.save(notaEdit).observe(viewLifecycleOwner){
             if (it != null && it > 0) findNavController().popBackStack()
             else AlertDialog.Builder(context)
-                .setTitle("Erro ao salvar nota!")
-                .setMessage("Não foi possível salvar a nota. Tente novamente mais tarde.")
-                .setPositiveButton("Ok", null)
+                .setTitle(getString(R.string.error_dialog_title))
+                .setMessage(getString(R.string.error_dialog_message))
+                .setPositiveButton(getString(R.string.dialog_ok), null)
                 .create()
                 .show()
         }
@@ -136,11 +138,11 @@ class NotasFormFragment: Fragment() {
 
     private fun validaNota(): Boolean {
         binding.textinputNotaTitulo.error = if (::notaTitulo.isInitialized && notaTitulo.isNotBlank())
-            null else "Insira um título para a nota"
+            null else getString(R.string.error_form_title)
         binding.textinputNotaData.error = if (::dateSelected.isInitialized)
-            null else "Selecione uma data"
+            null else getString(R.string.error_form_date)
         binding.textinputNotaHora.error = if (::timeSelected.isInitialized)
-            null else "Selecione um horário"
+            null else getString(R.string.error_form_time)
 
         return listOf(binding.textinputNotaTitulo,
             binding.textinputNotaData,

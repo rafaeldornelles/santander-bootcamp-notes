@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Notas App</string>
+    <string name="description_add_note_button">Botão Adicionar Nota</string>
+    <string name="description_button_options_note">Botão Opções Nota</string>
+    <string name="nota_titulo_hint">Titulo</string>
+    <string name="nota_data_hint">Data</string>
+    <string name="nota_hora_hint">Hora</string>
+    <string name="button_cancelar_text">Cancelar</string>
+    <string name="button_save_text">Salvar Nota</string>
+    <string name="remove_option_text">Remover</string>
+    <string name="label_list_notas">Minhas Notas</string>
+    <string name="label_add_nota">Adicionar Nota</string>
+    <string name="error_form_time">Selecione um horário</string>
+    <string name="error_form_date">Selecione uma data</string>
+    <string name="error_form_title">Insira um título para a nota</string>
+    <string name="dialog_ok">OK</string>
+    <string name="error_dialog_message">Não foi possível salvar a nota. Tente novamente mais tarde.</string>
+    <string name="error_dialog_title">Erro ao salvar nota!</string>
+    <string name="datepicker_title">Selecione uma data</string>
+    <string name="timepicker_title">Selecione um horário</string>
 </resources>

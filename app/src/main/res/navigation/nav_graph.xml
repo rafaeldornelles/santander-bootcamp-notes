@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/notasFragment"
         android:name="br.com.rafaeldornelles.ui.listNotas.NotasFragment"
-        android:label="Minhas Notas"
+        android:label="@string/label_list_notas"
         tools:layout="@layout/fragment_notas">
         <action
             android:id="@+id/action_notasFragment_to_notasFormFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/notasFormFragment"
         android:name="br.com.rafaeldornelles.ui.listNotas.NotasFormFragment"
-        android:label="Adicionar Nota"
+        android:label="@string/label_add_nota"
         tools:layout="@layout/fragment_notas_form" >
         <argument
             android:name="nota"
