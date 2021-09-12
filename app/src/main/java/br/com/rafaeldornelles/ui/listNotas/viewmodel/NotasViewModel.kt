@@ -2,9 +2,10 @@ package br.com.rafaeldornelles.ui.listNotas.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.room.CoroutinesRoom
 import br.com.rafaeldornelles.model.Nota
 import br.com.rafaeldornelles.model.repository.NotaRepository
-import br.com.rafaeldornelles.ui.listNotas.NotasListener
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,17 +14,14 @@ import java.lang.Exception
 class NotasViewModel(private val repository: NotaRepository) : ViewModel() {
     val notas: LiveData<List<Nota>> get() = repository.allNotas.asLiveData()
 
-    fun save(nota: Nota, listener: NotasListener) = viewModelScope.launch {
-        try {
-            val notaId = withContext(Dispatchers.IO){
+    fun save(nota: Nota): LiveData<Long?> {
+        val liveData = MutableLiveData<Long?>()
+        viewModelScope.launch {
+            liveData.value = withContext(Dispatchers.IO) {
                 repository.save(nota)
             }
-            if (notaId < 0) throw Exception()
-            listener.onInsertSuccess()
-        } catch (e: Exception){
-            Log.d("DEBUG", e.message.toString())
-            listener.onInsertError()
         }
+        return liveData
     }
 
     fun delete(nota: Nota){ viewModelScope.launch {

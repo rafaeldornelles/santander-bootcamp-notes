@@ -21,7 +21,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import java.time.LocalDate
 import java.time.LocalTime
 
-class NotasFormFragment: Fragment(), NotasListener {
+class NotasFormFragment: Fragment() {
     lateinit var binding: FragmentNotasFormBinding
     private val DATEPICKER_TAG = "datepicker"
     private val TIMEPICKER_TAG = "timepicker"
@@ -123,7 +123,15 @@ class NotasFormFragment: Fragment(), NotasListener {
         if (!validaNota()) return
         val notaId = nota?.id ?: 0
         val notaEdit = Nota(notaId, notaTitulo, dateSelected, timeSelected)
-        notasViewModel.save(notaEdit, this)
+        notasViewModel.save(notaEdit).observe(viewLifecycleOwner){
+            if (it != null && it > 0) findNavController().popBackStack()
+            else AlertDialog.Builder(context)
+                .setTitle("Erro ao salvar nota!")
+                .setMessage("Não foi possível salvar a nota. Tente novamente mais tarde.")
+                .setPositiveButton("Ok", null)
+                .create()
+                .show()
+        }
     }
 
     fun validaNota(): Boolean {
@@ -137,18 +145,5 @@ class NotasFormFragment: Fragment(), NotasListener {
         return listOf(binding.textinputNotaTitulo,
             binding.textinputNotaData,
             binding.textinputNotaTitulo).all { it.error == null }
-    }
-
-    override fun onInsertSuccess() {
-        findNavController().popBackStack()
-    }
-
-    override fun onInsertError() {
-        AlertDialog.Builder(context)
-            .setTitle("Erro ao salvar nota!")
-            .setMessage("Não foi possível salvar a nota. Tente novamente mais tarde.")
-            .setPositiveButton("Ok", null)
-            .create()
-            .show()
     }
 }
