@@ -9,7 +9,7 @@
     <string name="button_save_text">Salvar Nota</string>
     <string name="remove_option_text">Remover</string>
     <string name="label_list_notas">Minhas Notas</string>
-    <string name="label_add_nota">Adicionar Nota</string>
+    <string name="label_add_nota">{formAction} Nota</string>
     <string name="error_form_time">Selecione um horário</string>
     <string name="error_form_date">Selecione uma data</string>
     <string name="error_form_title">Insira um título para a nota</string>
@@ -19,4 +19,6 @@
     <string name="datepicker_title">Selecione uma data</string>
     <string name="timepicker_title">Selecione um horário</string>
     <string name="empty_list_notas_message">Nenhuma nota adicionada. Adicione notas para elas aparecerem aqui.</string>
+    <string name="form_label_adicionar">Adicionar</string>
+    <string name="form_label_editar">Editar</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import br.com.rafaeldornelles.NotasApplication
+import br.com.rafaeldornelles.R
 import br.com.rafaeldornelles.databinding.FragmentNotasBinding
 import br.com.rafaeldornelles.model.Nota
 import br.com.rafaeldornelles.ui.listNotas.viewmodel.NotasViewModel
@@ -56,7 +57,7 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
 
     private fun configurarBotaoAdicionar() {
         binding.notasButtonAdd.setOnClickListener {
-            val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+            val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment(getString(R.string.form_label_adicionar))
             findNavController().navigate(action)
         }
     }
@@ -66,7 +67,7 @@ class NotasFragment : Fragment(), NotasAdapter.NotasAdapterListener {
     }
 
     override fun onItemClick(nota: Nota){
-        val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment()
+        val action = NotasFragmentDirections.actionNotasFragmentToNotasFormFragment(getString(R.string.form_label_editar))
         action.nota = nota
         findNavController().navigate(action)
     }
